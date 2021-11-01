@@ -81,6 +81,7 @@ body {
   align-items: center;
   justify-content: center;
 }
+
 .list .list-item .list-label.complete {
   text-decoration: line-through;
 }

@@ -37,12 +37,14 @@ body {
 .title span {
   color: #9b9797e3;
 }
+
 .add {
   width: 100%;
   display: flex;
   justify-content: space-between;
   border-bottom: solid #9b979736 1px;
 }
+
 .add #add-item {
   background: none;
   border: none;
@@ -51,6 +53,7 @@ body {
   outline: none;
   margin-top: 1%;
 }
+
 .add #enter {
   outline: none;
   background: none;
@@ -59,9 +62,11 @@ body {
   padding: 1%;
   margin: 1%;
 }
+
 .list {
   width: 100%;
 }
+
 .list-item {
   display: flex;
   justify-content: space-between;
@@ -70,17 +75,20 @@ body {
   border-bottom: solid #9b979736 1px;
   text-align: center;
 }
+
 .list-item .list-label {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 .list-item .div-man {
   display: flex;
   align-items: center;
   justify-content: center;
   color: #9b9797e3;
 }
+
 .clear-btn {
   background: none;
   outline: none;

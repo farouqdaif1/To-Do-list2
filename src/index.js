@@ -1,3 +1,4 @@
+import getDataLS, { addTaskLS, statueUdpdateLS, statueUdpdateUI } from './interactive.js';
 import './style.css';
 
 const tasks = [
@@ -15,6 +16,7 @@ function addItemUI(task) {
   // Inside list item create a div label
   const divlabel = document.createElement('div');
   divlabel.classList.add('list-label');
+  divlabel.setAttribute('id', `box${task.index}`);
   listItem.appendChild(divlabel);
   // Inside list item create a div manipulate
   const divman = document.createElement('div');
@@ -22,9 +24,11 @@ function addItemUI(task) {
   listItem.appendChild(divman);
   // Inside div label create a Input checkBox
   const checkBox = document.createElement('input');
+  checkBox.classList.add('check');
   checkBox.setAttribute('type', 'checkbox');
   checkBox.setAttribute('name', `item${task.index}`);
   checkBox.setAttribute('id', `item${task.index}`);
+  checkBox.checked = task.completed;
   divlabel.appendChild(checkBox);
   // Inside div label create a label
   const labelItem = document.createElement('label');
@@ -41,10 +45,35 @@ function addItemUI(task) {
   editBtn.classList.add('material-icons');
   editBtn.textContent = 'delete';
   divman.appendChild(editBtn);
+  // Update the UI when page load
+  if (task.completed) {
+    document.querySelector(`#item${task.index}`).checked = true;
+    document.querySelector(`#item${task.index}`).parentElement.classList.add('complete');
+  } else {
+    document.querySelector(`#item${task.index}`).parentElement.classList.remove('complete');
+    document.querySelector(`#item${task.index}`).checked = false;
+  }
 }
+const sorteddata = getDataLS();
 function diplayTask() {
-  tasks.forEach((task) => {
-    addItemUI(task);
-  });
+  if (sorteddata.length === 0) {
+    tasks.forEach((task) => {
+      addItemUI(task);
+      addTaskLS(task);
+    });
+  } else {
+    sorteddata.forEach((x) => {
+      addItemUI(x);
+    });
+  }
 }
+
+const list = document.querySelector('.list');
+list.addEventListener('change', (e) => {
+  if (e.target.classList.contains('check')) {
+    const task = document.querySelector(`#${e.target.id}`);
+    statueUdpdateLS(e);
+    statueUdpdateUI(task);
+  }
+});
 document.addEventListener('DOMContentLoaded', diplayTask);

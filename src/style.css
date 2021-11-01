@@ -1,0 +1,93 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+}
+
+.continer {
+  padding: 1%;
+  background-color: #f8f8ff;
+  width: 50%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10%;
+  box-shadow: rgba(0, 0, 0, 0.24) 1px 3px 8px;
+}
+
+.title {
+  display: flex;
+  padding: 2%;
+  justify-content: space-between;
+  border-bottom: solid #9b979736 1px;
+  width: 100%;
+}
+
+.title span {
+  color: #9b9797e3;
+}
+.add {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid #9b979736 1px;
+}
+.add #add-item {
+  background: none;
+  border: none;
+  padding: 2%;
+  width: 100%;
+  outline: none;
+  margin-top: 1%;
+}
+.add #enter {
+  outline: none;
+  background: none;
+  border: none;
+  color: #9b9797e3;
+  padding: 1%;
+  margin: 1%;
+}
+.list {
+  width: 100%;
+}
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 2%;
+  margin-top: 1%;
+  border-bottom: solid #9b979736 1px;
+  text-align: center;
+}
+.list-item .list-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.list-item .div-man {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9b9797e3;
+}
+.clear-btn {
+  background: none;
+  outline: none;
+  border: none;
+  padding: 2%;
+  margin: 1%;
+  font-size: 17px;
+  color: #9b9797e3;
+  text-align: center;
+}

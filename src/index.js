@@ -1,79 +1,53 @@
-import getDataLS, { addTaskLS, statueUdpdateLS, statueUdpdateUI } from './interactive.js';
+// import editText from './add-remove.js';
 import './style.css';
+import statueUdpdateLS, { statueUdpdateUI } from './interactive.js';
+import addItemUI, { diplayTask, clear } from './uImanpulate.js';
+import Task from './task.js';
+import getDataLS, { addTaskLS, indexValue, remove } from './localstorage.js';
 
-const tasks = [
-  { description: 'complete to do 1 ', index: 1, completed: false },
-  { description: 'complete to do 2 ', index: 2, completed: false },
-  { description: 'complete to do 3 ', index: 3, completed: false },
-  { description: 'complete to do 4 ', index: 4, completed: false },
-];
-function addItemUI(task) {
-  const list = document.querySelector('.list');
-  // Inside List create a div for list item
-  const listItem = document.createElement('div');
-  listItem.classList.add('list-item');
-  list.appendChild(listItem);
-  // Inside list item create a div label
-  const divlabel = document.createElement('div');
-  divlabel.classList.add('list-label');
-  divlabel.setAttribute('id', `box${task.index}`);
-  listItem.appendChild(divlabel);
-  // Inside list item create a div manipulate
-  const divman = document.createElement('div');
-  divman.classList.add('div-man');
-  listItem.appendChild(divman);
-  // Inside div label create a Input checkBox
-  const checkBox = document.createElement('input');
-  checkBox.classList.add('check');
-  checkBox.setAttribute('type', 'checkbox');
-  checkBox.setAttribute('name', `item${task.index}`);
-  checkBox.setAttribute('id', `item${task.index}`);
-  checkBox.checked = task.completed;
-  divlabel.appendChild(checkBox);
-  // Inside div label create a label
-  const labelItem = document.createElement('label');
-  labelItem.setAttribute('for', `item${task.index}`);
-  labelItem.textContent = `${task.description}`;
-  divlabel.appendChild(labelItem);
-  // Inside div manipulate create Delet button
-  const deletBtn = document.createElement('span');
-  deletBtn.classList.add('material-icons');
-  deletBtn.textContent = 'edit';
-  divman.appendChild(deletBtn);
-  // Inside div manipulate create Edit button
-  const editBtn = document.createElement('span');
-  editBtn.classList.add('material-icons');
-  editBtn.textContent = 'delete';
-  divman.appendChild(editBtn);
-  // Update the UI when page load
-  if (task.completed) {
-    document.querySelector(`#item${task.index}`).checked = true;
-    document.querySelector(`#item${task.index}`).parentElement.classList.add('complete');
-  } else {
-    document.querySelector(`#item${task.index}`).parentElement.classList.remove('complete');
-    document.querySelector(`#item${task.index}`).checked = false;
-  }
-}
-const sorteddata = getDataLS();
-function diplayTask() {
-  if (sorteddata.length === 0) {
-    tasks.forEach((task) => {
-      addItemUI(task);
-      addTaskLS(task);
-    });
-  } else {
-    sorteddata.forEach((x) => {
-      addItemUI(x);
-    });
-  }
-}
+document.addEventListener('DOMContentLoaded', diplayTask);
 
 const list = document.querySelector('.list');
+document.querySelector('#enter').addEventListener('click', (e) => {
+  if (e.target.classList.contains('add-item')) {
+    const Input = document.querySelector('#add-item').value;
+    const index = getDataLS().length + 1;
+    const task = new Task(Input, index, false);
+    addTaskLS(task);
+    addItemUI(task);
+    clear();
+  }
+});
 list.addEventListener('change', (e) => {
   if (e.target.classList.contains('check')) {
     const task = document.querySelector(`#${e.target.id}`);
-    statueUdpdateLS(e);
+    const taskx = e.target;
+    statueUdpdateLS(taskx);
     statueUdpdateUI(task);
   }
 });
-document.addEventListener('DOMContentLoaded', diplayTask);
+list.addEventListener('click', (e) => {
+  if (e.target.classList.contains('delete')) {
+    remove(e.target.id);
+    e.target.parentElement.parentElement.remove();
+    window.location.reload();
+    indexValue();
+  }
+});
+document.querySelector('.clear-btn').addEventListener('click', () => {
+  let data = getDataLS();
+  data = data.filter((task) => !task.completed);
+  localStorage.setItem('tasks', JSON.stringify(data));
+  indexValue();
+  window.location.reload();
+});
+
+// list.addEventListener('click', (e) => {
+//   if (e.target.classList.contains('edit')) {
+//     e.target.parentElement.previousSibling.children[1].classList.add('none');
+//     e.target.parentElement.previousSibling.children[2].classList.remove('none');
+//     document.querySelector('.new').addEventListener('blur', (e) => {
+//       editText(e.target.value, 1);
+//     });
+//   }
+// });

@@ -1,10 +1,14 @@
-import getDataLS from './interactive.js';
+import getDataLS from './localstorage.js';
 
 export default function editText(taskInput, index) {
   if (taskInput === '') {
     return;
   }
   const task = getDataLS();
-  task[index + 1].description = taskInput;
+  task.forEach((element, i) => {
+    if (index === `para-${i + 1}`) {
+      element.description = taskInput;
+    }
+  });
   localStorage.setItem('tasks', JSON.stringify(task));
 }

@@ -26,6 +26,7 @@ export default function addItemUI(task) {
   divlabel.appendChild(checkBox);
   // Inside div label create a label
   const labelItem = document.createElement('p');
+  labelItem.classList.add(`para-${task.index}`);
   // labelItem.setAttribute('for', `item${task.index}`);
   labelItem.textContent = `${task.description}`;
   divlabel.appendChild(labelItem);

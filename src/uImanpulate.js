@@ -1,5 +1,4 @@
 import getDataLS, { addTaskLS } from './localstorage.js';
-// import editText from './add-remove.js';
 
 export default function addItemUI(task) {
   const list = document.querySelector('.list');
@@ -27,7 +26,6 @@ export default function addItemUI(task) {
   // Inside div label create a label
   const labelItem = document.createElement('p');
   labelItem.classList.add(`para-${task.index}`);
-  // labelItem.setAttribute('for', `item${task.index}`);
   labelItem.textContent = `${task.description}`;
   divlabel.appendChild(labelItem);
   // Inside div manipulate create Delet button
@@ -36,6 +34,7 @@ export default function addItemUI(task) {
   editBtn.classList.add('edit');
   editBtn.setAttribute('id', `edit${task.index}`);
   editBtn.textContent = 'edit';
+  editBtn.style.cursor = 'pointer';
   divman.appendChild(editBtn);
   // Inside div manipulate create Edit button
   const deletBtn = document.createElement('span');
@@ -43,6 +42,7 @@ export default function addItemUI(task) {
   deletBtn.classList.add('delete');
   deletBtn.setAttribute('id', `delete${task.index}`);
   deletBtn.textContent = 'delete';
+  deletBtn.style.cursor = 'pointer';
   divman.appendChild(deletBtn);
   // Update the UI when page load
   const editPara = document.createElement('input');

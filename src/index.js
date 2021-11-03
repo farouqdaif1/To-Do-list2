@@ -40,38 +40,6 @@ document.querySelector('.clear-btn').addEventListener('click', () => {
   indexValue();
   window.location.reload();
 });
-// list.addEventListener('click', (e) => {
-//   if (e.target.classList.contains('edit')) {
-//     const oldTask = e.target.parentElement.previousSibling.children[1];
-//     oldTask.classList.add('none');
-//     e.target.parentElement.previousSibling.children[2].classList.remove('none');
-//     getDataLS().forEach((el) => {
-//       if (el.description === oldTask.textContent) {
-//         localStorage.setItem('index', el.index);
-//       }
-//     });
-//     document.querySelector('.new').addEventListener('keypress', (e) => {
-//       if (e.key === 'Enter') {
-//         console.log(localStorage.getItem('index'));
-//       }
-//     });
-//   }
-// });
-// listItem.addEventListener('click', () => {
-//   const newInput = document.createElement('input');
-//   newInput.value = listItem.textContent;
-//   newInput.classList.add('editing')
-// });
-// const theNewInput = document.querySelector('.editing');
-// theNewInput.addEventListener('keypress', (e) => {
-//   if (e.key === 'Enter') {
-//     getDataLS().forEach((el) => {
-//       if (el.description === listItem.textContent) {
-//         console.log('adas');
-//       }
-//     })
-//   }
-// })
 list.addEventListener('click', (e) => {
   const x = e.target.parentElement.previousSibling;
   if (e.target.classList.contains('edit')) {
@@ -83,7 +51,6 @@ list.addEventListener('click', (e) => {
         x.children[1].textContent = x.children[2].value;
         x.children[1].classList.remove('none');
         x.children[2].classList.add('none');
-        // console.log(x.children[1].classList.value);
         editText(x.children[2].value, x.children[1].classList.value);
       }
     });

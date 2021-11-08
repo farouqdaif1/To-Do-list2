@@ -5,7 +5,7 @@ A simple yet powerful to-do list, inspired by the minimalist website.
 
 ## Live Demo
 
-[Live Demo Link]
+[Live Demo Link][https://farouqdaif1.github.io/To-Do-list2/]
 
 ## Built With
 
@@ -65,7 +65,7 @@ Next, execute `npm run build` and check if the HTML body style has changed.
 
 ## Authors
 
-👤 Somdotta Sarkar
+👤Farouq Daif
 
 
 - GitHub: [@farouqdaif1](https://github.com/farouqdaif1)

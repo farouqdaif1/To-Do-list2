@@ -115,7 +115,33 @@ describe('tests', () => {
       return tasksIn.length;
     });
     // Act
-
     expect(cleartasks(tasks, remover)).toBe(2);
+  });
+  test(' Complete task true or false at local storage', () => {
+    // Arrange
+
+    const tasks = [
+      {
+        description: 'task 1',
+        complete: false,
+        index: 1,
+      },
+      {
+        description: 'task 2',
+        complete: true,
+        index: 2,
+      },
+    ];
+    // Mock function
+
+    const isChecked = (index, tasksIn) => {
+      let checked = false;
+      if (tasksIn[index].complete === true) {
+        checked = true;
+      }
+      return checked;
+    };
+    // Act
+    expect(isChecked(1, tasks)).toBe(true);
   });
 });

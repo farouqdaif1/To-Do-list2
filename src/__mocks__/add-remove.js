@@ -1,4 +1,7 @@
+import StorageMock from './storage.js';
 import getDataLS from './localstorage.js';
+
+const storage = new StorageMock();
 
 export default function editText(taskInput, index, task = getDataLS()) {
   if (taskInput === '') {
@@ -9,5 +12,5 @@ export default function editText(taskInput, index, task = getDataLS()) {
       element.description = taskInput;
     }
   });
-  localStorage.setItem('tasks', JSON.stringify(task));
+  storage.setItem('tasks', task);
 }

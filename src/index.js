@@ -6,6 +6,7 @@ import getDataLS, { addTaskLS, indexValue, remove } from './localstorage.js';
 import editText from './add-remove.js';
 
 document.addEventListener('DOMContentLoaded', diplayTask);
+
 const list = document.querySelector('.list');
 document.querySelector('#enter').addEventListener('click', (e) => {
   if (e.target.classList.contains('add-item')) {
@@ -17,6 +18,7 @@ document.querySelector('#enter').addEventListener('click', (e) => {
     clear();
   }
 });
+
 list.addEventListener('change', (e) => {
   if (e.target.classList.contains('check')) {
     const task = document.querySelector(`#${e.target.id}`);
@@ -25,6 +27,7 @@ list.addEventListener('change', (e) => {
     statueUdpdateUI(task);
   }
 });
+
 list.addEventListener('click', (e) => {
   if (e.target.classList.contains('delete')) {
     remove(e.target.id);
@@ -33,6 +36,7 @@ list.addEventListener('click', (e) => {
     indexValue();
   }
 });
+
 document.querySelector('.clear-btn').addEventListener('click', () => {
   let data = getDataLS();
   data = data.filter((task) => !task.completed);
@@ -40,6 +44,7 @@ document.querySelector('.clear-btn').addEventListener('click', () => {
   indexValue();
   window.location.reload();
 });
+
 list.addEventListener('click', (e) => {
   const x = e.target.parentElement.previousSibling;
   if (e.target.classList.contains('edit')) {

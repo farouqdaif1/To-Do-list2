@@ -8,6 +8,13 @@ import editText from './add-remove.js';
 document.addEventListener('DOMContentLoaded', diplayTask);
 
 const list = document.querySelector('.list');
+
+export default function clearAllcomplete(data = getDataLS()) {
+  data = data.filter((task) => !task.completed);
+  localStorage.setItem('tasks', JSON.stringify(data));
+  indexValue();
+}
+
 document.querySelector('#enter').addEventListener('click', (e) => {
   if (e.target.classList.contains('add-item')) {
     const Input = document.querySelector('#add-item').value;
@@ -36,12 +43,8 @@ list.addEventListener('click', (e) => {
     indexValue();
   }
 });
-
 document.querySelector('.clear-btn').addEventListener('click', () => {
-  let data = getDataLS();
-  data = data.filter((task) => !task.completed);
-  localStorage.setItem('tasks', JSON.stringify(data));
-  indexValue();
+  clearAllcomplete();
   window.location.reload();
 });
 

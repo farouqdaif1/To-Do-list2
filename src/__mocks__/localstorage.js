@@ -19,7 +19,7 @@ export function indexValue() {
     task[0].index = 1;
     storage.setItem('tasks', task);
   } else {
-    task.sort((a, b) => a.index - b.index);
+    task.sort((a, b) => a.index - b.indexض);
     for (let i = 0; i < task.length; i += 1) {
       task[i].index = i + 1;
     }

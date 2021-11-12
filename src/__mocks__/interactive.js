@@ -17,8 +17,7 @@ export default function statueUdpdateLS(task, data = getDataLS()) {
   });
 }
 // add checked to UI
-export function statueUdpdateUI(task) {
-  const data = getDataLS();
+export function statueUdpdateUI(task, data = getDataLS()) {
   data.forEach((element) => {
     if (task.id === `item${element.index}`) {
       if (element.completed) {
